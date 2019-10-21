@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Socialite;
-use Carbon\Carbon;
 use App\OauthClient;
-use Symfony\Component\Yaml\Yaml;
 use Response;
+use Symfony\Component\Yaml\Yaml;
 
 class SocialController extends Controller
 {
@@ -39,17 +38,23 @@ class SocialController extends Controller
             $c->save();
         }
 
+        return redirect('/' . $c->id);
+    }
+
+    public function download(Request $request, int $id)
+    {
+        $c = OauthClient::where('id', $id)->first();
+
         $yaml = [
             'api.rvrbk.io' => [
                 'client_id' => $c->id,
                 'client_secret' => $c->secret
             ]
         ];
-    
-        return Response::make(Yaml::dump($yaml), 200, [
-            'Content-type' => 'application/x-yaml', 
-            'Content-Disposition' => 'attachment; filename=credentials.yaml',
-            'Content-Length' => strlen(print_r($yaml, true))
-        ]);
+
+        return response(Yaml::dump($yaml), 200, [
+            'Content-Type' => 'application/x-yaml',
+            'Content-Disposition' => 'attachment; filename="credentials.yaml"',
+        ]);;
     }
 }

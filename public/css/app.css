@@ -1,15 +1,25 @@
-@import url(https://fonts.googleapis.com/css?family=Montserrat&display=swap);html,
+@import url(https://fonts.googleapis.com/css?family=Roboto&display=swap);html,
 body {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
 }
 
+a {
+  text-transform: uppercase;
+  color: #000;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 h1 {
-  font-family: "Montserrat", sans-serif;
   width: 100%;
   text-align: center;
+  text-transform: uppercase;
 }
 
 ul.no-list {
@@ -18,9 +28,13 @@ ul.no-list {
   padding: 0;
 }
 
+ul.no-list li {
+  margin-left: 2em;
+}
+
 .social-wrapper {
   position: relative;
-  top: 3em;
+  margin-top: 4em;
 }
 
 .social-wrapper .social-icons {
@@ -32,6 +46,10 @@ ul.no-list {
   position: relative;
   display: flex;
   justify-content: center;
-  top: 4em;
+  margin: 3em 0;
+}
+
+.download-wrapper {
+  text-align: center;
 }
 
